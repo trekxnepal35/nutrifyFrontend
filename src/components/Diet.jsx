@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react"
 import { TheUserContext } from "./userContex"
+import API_URL from "../config/api"
 
 export default function Diet() {
     const contexData = useContext(TheUserContext)
     const [dietData, setDietData] = useState([])
     const [message, setMessage] = useState("");
-    console.log("Diet",contexData.userData.picture)
+    console.log("Diet picture path",contexData.userData.picture)
     // AI
     const nutritionTotal = dietData.reduce(
         (total, item) => {
@@ -31,7 +32,7 @@ export default function Diet() {
     function handleDiet(e) {
 
         if (e.target.value.length !== 0) {
-            fetch(`http://localhost:3001/track/${contexData.userData.id}/${e.target.value}`, {
+            fetch(`${API_URL}/track/${contexData.userData.id}/${e.target.value}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

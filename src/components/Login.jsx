@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { TheUserContext } from "./userContex";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config/api";
 
 
 export default function Login() {
@@ -42,7 +43,7 @@ export default function Login() {
     }
 
 
-    fetch("http://localhost:3001/login", {
+    fetch(`${API_URL}/login`, {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {

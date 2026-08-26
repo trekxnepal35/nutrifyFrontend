@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { TheUserContext } from "./userContex";
 import Product from "./Product";
+import API_URL from "../config/api";
 
 export default function Track() {
   const contexData = useContext(TheUserContext)
@@ -15,7 +16,7 @@ export default function Track() {
 
   const searchProduct = (e) => {
     if(e.target.value.length!==0){
-    fetch(`http://localhost:3001/product/${e.target.value}`, {
+    fetch(`${API_URL}/product/${e.target.value}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

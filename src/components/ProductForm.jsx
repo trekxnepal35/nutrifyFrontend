@@ -1,6 +1,7 @@
 
 import { useContext, useState } from "react"
 import { TheUserContext } from "./userContex"
+import API_URL from "../config/api";
 
 export default function ProductForm() {
     const contexData = useContext(TheUserContext)
@@ -77,7 +78,7 @@ export default function ProductForm() {
         try {
 
             const response = await 
-                fetch(`http://localhost:3001/api/products`,
+                fetch(`${API_URL}/api/products`,
                 {
                     method: "POST",
                     body:data,

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { TheUserContext } from "./userContex"
+import API_URL from "../config/api";
 
 export default function Product(props){
     const contexData = useContext(TheUserContext)
@@ -8,7 +9,6 @@ export default function Product(props){
 
     const {singleProduct}= props
     let values = {...singleProduct}
-  console.log("single Product ",singleProduct)
     const[qty, setQty]=useState(100)
     const [price,setPrice] = useState({price:""})  
 
@@ -68,7 +68,7 @@ const trackitem = ()=>{
     console.log("trackItem in",trackData,values)
     
 
-    fetch(`http://localhost:3001/track`, {
+    fetch(`${API_URL}/track`, {
       method: "POST",
       body:JSON.stringify(trackData),
       headers: {
@@ -120,30 +120,7 @@ const trackitem = ()=>{
             <div className="product-nutrition">
             <h3>{singleProduct.name}</h3>
             <p className="nutrition-fact">Nutrition Facts per <span className="qty-title">{qty}g</span> </p>
-               {/* <div className="nutrition-list">
-                <div className="nutrition-group">
-                    <p>calories:</p>
-                    <p>{values.calories} kcal</p>
-                </div>
-                <div className="nutrition-group">
-                    <p>carbohydrate:</p>
-                    <p>{values.carbohydrate} g</p>
-                </div>
-                <div className="nutrition-group">
-                    <p>fat:</p>
-                    <p>{values.fat} g</p>
-                </div>
-                <div className="nutrition-group">
-                    <p>fiber:</p>
-                    <p>{values.fiber} g</p>
-                </div>
-                <div className="nutrition-group">
-                    <p>protein:</p>
-                    <p>{values.protein} g</p>
-                </div>
-               </div> */}
-
-               {/* Nutrition */}
+             
         <div className="mt-4 divide-y divide-gray-100">
 
 <NutritionRow

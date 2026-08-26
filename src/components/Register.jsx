@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import API_URL from "../config/api";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -127,7 +128,7 @@ export default function Register() {
       // Send to Express
       // -----------------------------
       const response = await fetch(
-        "http://localhost:3001/register",
+        `${API_URL}`,
         {
           method: "POST",
           body: data,
