@@ -128,7 +128,7 @@ export default function Register() {
       // Send to Express
       // -----------------------------
       const response = await fetch(
-        `${API_URL}`,
+        `${API_URL}/register`,
         {
           method: "POST",
           body: data,
