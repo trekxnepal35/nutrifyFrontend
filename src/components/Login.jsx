@@ -16,6 +16,7 @@ export default function Login() {
   const contexData = useContext(TheUserContext)
 
   console.log("Login Data",contexData)
+  console.log("API URL",API_URL)
     
 
 //  Function Handling Change data 
