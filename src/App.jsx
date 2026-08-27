@@ -19,7 +19,7 @@ import Home from './components/Home'
 function App() {
   const [count, setCount] = useState(0)
   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("nutrify-user")))
-  console.log("App Data",userData)
+
   return (
     <>    
    

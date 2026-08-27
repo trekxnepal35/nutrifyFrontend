@@ -26,7 +26,7 @@ export default function Product(props){
      setPrice(prev=>({
       ...prev,price:e.target.value
      }))}
-     console.log("price",price)
+
     
 
     const multiplier = qty / 100;
@@ -73,7 +73,7 @@ const trackitem = ()=>{
       body:JSON.stringify(trackData),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `bearer ${contexData.userData.token}`
+        "Authorization": `Bearer ${contexData.userData.token}`
       }
     })
       .then((res) => res.json()

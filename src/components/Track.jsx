@@ -8,7 +8,7 @@ export default function Track() {
 
   const [message, setMessage] = useState("");
   const [productData, setProductData] = useState([])
-  console.log("Product Data", productData)
+  
 
   const [singleProduct, setSingleProduct] = useState(null)
 
@@ -20,7 +20,7 @@ export default function Track() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `bearer ${contexData.userData.token}`
+        "Authorization": `Bearer ${contexData.userData.token}`
       }
     })
       .then((res) => res.json()

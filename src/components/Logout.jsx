@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom"
 export default function Logout(){
 
     const contexData = useContext(TheUserContext)
-    console.log("Private Data",contexData)
+    console.log("Logout Data",contexData)
     
         contexData.setUserData(null);
         localStorage.removeItem("nutrify-user")

@@ -3,10 +3,9 @@ import { useContext, useState } from "react"
 import { TheUserContext } from "./userContex"
 import API_URL from "../config/api";
 
+
 export default function ProductForm() {
     const contexData = useContext(TheUserContext)
-
-    
 
     const [formData, setFormData] = useState({
         name: "",
@@ -14,7 +13,7 @@ export default function ProductForm() {
         calories: "",
         protein: "",
         fiber: "",
-        fat:"",
+        fat: "",
         picture: null
     });
 
@@ -71,29 +70,24 @@ export default function ProductForm() {
         data.append("calories", formData.calories);
         data.append("protein", formData.protein);
         data.append("fiber", formData.fiber);
-        data.append("fat", formData.fiber);
+        data.append("fat", formData.fat);
         data.append("picture", formData.picture);
-     
+
 
         try {
 
-            const response = await 
-                fetch(`${API_URL}/api/products`,
-                {
-                    method: "POST",
-                    body:data,
-                    headers: {
-                                               
-                        "Authorization": `bearer ${contexData.userData.token}`
-                      }
-               
-                }
-            );
+            const response = await fetch(`${API_URL}/api/products`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${contexData.userData.token}`
+                },
+                body: data
+            });
 
 
             const result = await response.json();
-            console.log("Result",result)
-,result
+            console.log("Result", result)
+                , result
 
             if (!response.ok) {
 
@@ -122,7 +116,7 @@ export default function ProductForm() {
                 calories: "",
                 protein: "",
                 fiber: "",
-                fat:"",
+                fat: "",
                 picture: null
             });
 
@@ -150,365 +144,170 @@ export default function ProductForm() {
     return (
         <div className="product-form-container">
 
-    <h2 className="product-form-title">
-        Add Product
-    </h2>
+            <h2 className="product-form-title">
+                Add Product
+            </h2>
 
-    <form className="product-form" onSubmit={handleSubmit}>
+            <form className="product-form" onSubmit={handleSubmit}>
 
-        {/* Product Name */}
-        <div className="form-group">
-            <label htmlFor="name">
-                Product Name
-            </label>
+                {/* Product Name */}
+                <div className="form-group">
+                    <label htmlFor="name">
+                        Product Name
+                    </label>
 
-            <input
-                id="name"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Apple"
-                required
-            />
+                    <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Apple"
+                        required
+                    />
+                </div>
+
+                {/* Carbohydrate */}
+                <div className="form-group">
+                    <label htmlFor="carbohydrate">
+                        Carbohydrate (g)
+                    </label>
+
+                    <input
+                        id="carbohydrate"
+                        type="number"
+                        step="0.01"
+                        name="carbohydrate"
+                        value={formData.carbohydrate}
+                        onChange={handleChange}
+                        placeholder="13.81"
+                        required
+                    />
+                </div>
+
+                {/* Calories */}
+                <div className="form-group">
+                    <label htmlFor="calories">
+                        Calories (kcal)
+                    </label>
+
+                    <input
+                        id="calories"
+                        type="number"
+                        step="0.01"
+                        name="calories"
+                        value={formData.calories}
+                        onChange={handleChange}
+                        placeholder="52"
+                        required
+                    />
+                </div>
+
+                {/* Protein */}
+                <div className="form-group">
+                    <label htmlFor="protein">
+                        Protein (g)
+                    </label>
+
+                    <input
+                        id="protein"
+                        type="number"
+                        step="0.01"
+                        name="protein"
+                        value={formData.protein}
+                        onChange={handleChange}
+                        placeholder="0.26"
+                        required
+                    />
+                </div>
+
+                {/* Fiber */}
+                <div className="form-group">
+                    <label htmlFor="fiber">
+                        Fiber (g)
+                    </label>
+
+                    <input
+                        id="fiber"
+                        type="number"
+                        step="0.01"
+                        name="fiber"
+                        value={formData.fiber}
+                        onChange={handleChange}
+                        placeholder="2.4"
+                        required
+                    />
+                </div>
+
+                {/* Fat */}
+                <div className="form-group">
+                    <label htmlFor="fat">
+                        Fat (g)
+                    </label>
+
+                    <input
+                        id="fat"
+                        type="number"
+                        step="0.01"
+                        name="fat"
+                        value={formData.fat}
+                        onChange={handleChange}
+                        placeholder="0.17"
+                        required
+                    />
+                </div>
+
+                {/* Product Picture */}
+                <div className="form-group">
+                    <label htmlFor="picture">
+                        Product Picture
+                    </label>
+
+                    <input
+                        id="picture"
+                        name="picture"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={handlePicture}
+                        required
+                    />
+                </div>
+
+                {/* Picture Preview */}
+                {preview && (
+                    <div className="preview-container">
+                        <p className="preview-title">
+                            Preview
+                        </p>
+
+                        <img
+                            className="product-preview"
+                            src={preview}
+                            alt="Product preview"
+                            width="160"
+                            height="160"
+                        />
+                    </div>
+                )}
+
+                {/* Message */}
+                {message && (
+                    <p className="form-message">
+                        {message}
+                    </p>
+                )}
+
+                {/* Submit Button */}
+                <button
+                    className="save-product-button"
+                    type="submit"
+                >
+                    Save Product
+                </button>
+
+            </form>
+
         </div>
-
-        {/* Carbohydrate */}
-        <div className="form-group">
-            <label htmlFor="carbohydrate">
-                Carbohydrate (g)
-            </label>
-
-            <input
-                id="carbohydrate"
-                type="number"
-                step="0.01"
-                name="carbohydrate"
-                value={formData.carbohydrate}
-                onChange={handleChange}
-                placeholder="13.81"
-                required
-            />
-        </div>
-
-        {/* Calories */}
-        <div className="form-group">
-            <label htmlFor="calories">
-                Calories (kcal)
-            </label>
-
-            <input
-                id="calories"
-                type="number"
-                step="0.01"
-                name="calories"
-                value={formData.calories}
-                onChange={handleChange}
-                placeholder="52"
-                required
-            />
-        </div>
-
-        {/* Protein */}
-        <div className="form-group">
-            <label htmlFor="protein">
-                Protein (g)
-            </label>
-
-            <input
-                id="protein"
-                type="number"
-                step="0.01"
-                name="protein"
-                value={formData.protein}
-                onChange={handleChange}
-                placeholder="0.26"
-                required
-            />
-        </div>
-
-        {/* Fiber */}
-        <div className="form-group">
-            <label htmlFor="fiber">
-                Fiber (g)
-            </label>
-
-            <input
-                id="fiber"
-                type="number"
-                step="0.01"
-                name="fiber"
-                value={formData.fiber}
-                onChange={handleChange}
-                placeholder="2.4"
-                required
-            />
-        </div>
-
-        {/* Fat */}
-        <div className="form-group">
-            <label htmlFor="fat">
-                Fat (g)
-            </label>
-
-            <input
-                id="fat"
-                type="number"
-                step="0.01"
-                name="fat"
-                value={formData.fat}
-                onChange={handleChange}
-                placeholder="0.17"
-                required
-            />
-        </div>
-
-        {/* Product Picture */}
-        <div className="form-group">
-            <label htmlFor="picture">
-                Product Picture
-            </label>
-
-            <input
-                id="picture"
-                name="picture"
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                onChange={handlePicture}
-                required
-            />
-        </div>
-
-        {/* Picture Preview */}
-        {preview && (
-            <div className="preview-container">
-                <p className="preview-title">
-                    Preview
-                </p>
-
-                <img
-                    className="product-preview"
-                    src={preview}
-                    alt="Product preview"
-                    width="160"
-                    height="160"
-                />
-            </div>
-        )}
-
-        {/* Message */}
-        {message && (
-            <p className="form-message">
-                {message}
-            </p>
-        )}
-
-        {/* Submit Button */}
-        <button
-            className="save-product-button"
-            type="submit"
-        >
-            Save Product
-        </button>
-
-    </form>
-
-</div>
-        // <div>
-
-        //     <h2>
-        //         Add Product
-        //     </h2>
-
-
-        //     <form onSubmit={handleSubmit}>
-
-
-        //         {/* Product Name */}
-
-        //         <div>
-
-        //             <label>
-        //                 Product Name
-        //             </label>
-
-        //             <input
-        //                 type="text"
-        //                 name="name"
-        //                 value={formData.name}
-        //                 onChange={handleChange}
-        //                 placeholder="Apple"
-        //                 required
-        //             />
-
-        //         </div>
-
-
-        //         {/* Carbohydrate */}
-
-        //         <div>
-
-        //             <label>
-        //                 Carbohydrate (g)
-        //             </label>
-
-        //             <input
-        //                 type="number"
-        //                 step="0.01"
-        //                 name="carbohydrate"
-        //                 value={formData.carbohydrate}
-        //                 onChange={handleChange}
-        //                 placeholder="13.81"
-        //                 required
-        //             />
-
-        //         </div>
-
-
-        //         {/* Calories */}
-
-        //         <div>
-
-        //             <label>
-        //                 Calories (kcal)
-        //             </label>
-
-        //             <input
-        //                 type="number"
-        //                 step="0.01"
-        //                 name="calories"
-        //                 value={formData.calories}
-        //                 onChange={handleChange}
-        //                 placeholder="52"
-        //                 required
-        //             />
-
-        //         </div>
-
-
-        //         {/* Protein */}
-
-        //         <div>
-
-        //             <label>
-        //                 Protein (g)
-        //             </label>
-
-        //             <input
-        //                 type="number"
-        //                 step="0.01"
-        //                 name="protein"
-        //                 value={formData.protein}
-        //                 onChange={handleChange}
-        //                 placeholder="0.26"
-        //                 required
-        //             />
-
-        //         </div>
-
-
-        //         {/* Fiber */}
-
-        //         <div>
-
-        //             <label>
-        //                 Fiber (g)
-        //             </label>
-
-        //             <input
-        //                 type="number"
-        //                 step="0.01"
-        //                 name="fiber"
-        //                 value={formData.fiber}
-        //                 onChange={handleChange}
-        //                 placeholder="2.4"
-        //                 required
-        //             />
-
-        //         </div>
-        //         {/* Fat */}
-
-        //         <div>
-
-        //             <label>
-        //                 Fat (g)
-        //             </label>
-
-        //             <input
-        //                 type="number"
-        //                 step="0.01"
-        //                 name="fat"
-        //                 value={formData.fat}
-        //                 onChange={handleChange}
-        //                 placeholder="2.4"
-        //                 required
-        //             />
-
-        //         </div>
-
-
-        //         {/* Product Picture */}
-
-        //         <div>
-
-        //             <label>
-        //                 Product Picture
-        //             </label>
-
-        //             <input
-        //                 id="picture"
-        //                 name="picture"
-        //                 type="file"
-        //                 accept="image/jpeg,image/png,image/webp"
-        //                 onChange={handlePicture}
-        //                 required
-        //             />
-
-        //         </div>
-
-
-        //         {/* Picture Preview */}
-
-        //         {preview && (
-
-        //             <div>
-
-        //                 <p>
-        //                     Preview
-        //                 </p>
-
-        //                 <img
-        //                     src={preview}
-        //                     alt="Product preview"
-        //                     width="160"
-        //                     height="160"
-        //                 />
-
-        //             </div>
-
-        //         )}
-
-
-        //         {/* Message */}
-
-        //         {message && (
-
-        //             <p>
-        //                 {message}
-        //             </p>
-
-        //         )}
-
-
-        //         {/* Submit Button */}
-
-        //         <button type="submit">
-        //             Save Product
-        //         </button>
-
-
-        //     </form>
-
-        // </div>
+      
     );
 }
