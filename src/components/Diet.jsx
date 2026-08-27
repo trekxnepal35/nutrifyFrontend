@@ -111,7 +111,7 @@ export default function Diet() {
                                 </thead>
 
                                 <tbody>
-                                    {dietData.map((dItem) => (
+                                    {dietData?.map((dItem) => (
                                         <tr key={dItem._id}>
                                             <td>{dItem.productId.name}</td>
                                             <td>{dItem.quantity} g</td>

@@ -52,7 +52,8 @@ export default function Track() {
         <h2>
         Make Every Meal Count
     </h2>
-    <h3 className="diet-title">{contexData.userData.userName}<img src={`${contexData.userData.picture}`} alt="Profile-Pic" className="profile-img" /> </h3>
+    <h3 className="diet-title">{contexData.userData.userName}
+    {contexData.userData?.picture ?<img src={`${contexData.userData.picture}`} alt="Profile-Pic" className="profile-img" />:null} </h3>
       <div className="search-product">
         <span>
 
@@ -67,7 +68,7 @@ export default function Track() {
       
       <div className="product-list">
         {
-          productData.map((item)=>{
+          productData?.map((item)=>{
             console.log("item",item)
              return <p key={item._id} className="product-item" onClick={()=>
               {setSingleProduct(item)
